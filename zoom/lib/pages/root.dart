@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
@@ -161,6 +162,43 @@ class _RootState extends State<Root> {
           context,
           MaterialPageRoute(
               fullscreenDialog: true, builder: (_) => ParticipantPage()));
+    } else if (pageIndex == 4) {
+      buildBottomSheet();
     }
+  }
+
+  buildBottomSheet() {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (BuildContext context) => CupertinoActionSheet(
+              cancelButton: CupertinoActionSheetAction(
+                child: Text(
+                  "Cancel",
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              actions: List.generate(actionSheetItems.length, (index) {
+                if (actionSheetItems[index] == "Disconnect Audio") {
+                  return CupertinoActionSheetAction(
+                    child: Text(
+                      actionSheetItems[index],
+                      style: TextStyle(color: red),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  );
+                } else {
+                  return CupertinoActionSheetAction(
+                    child: Text(actionSheetItems[index]),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  );
+                }
+              }),
+            ));
   }
 }

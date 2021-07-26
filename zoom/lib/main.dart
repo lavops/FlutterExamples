@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Zoom UI',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.dark(),
       home: Root(),
     );
   }
