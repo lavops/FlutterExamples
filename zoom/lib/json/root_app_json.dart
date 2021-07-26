@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:zoom_clone/theme/colors.dart';
+import 'package:zoom/theme/colors.dart';
+
+String profileOtherURL =
+    "https://images.unsplash.com/flagged/photo-1557898246-9fd78587bcc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80";
+
+String profileMeURL =
+    "https://images.unsplash.com/photo-1601766111453-37ace3ba9eff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80";
 
 List bottomItems = [
   MaterialCommunityIcons.microphone,
