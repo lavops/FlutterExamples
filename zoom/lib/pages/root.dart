@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:zoom/json/root_app_json.dart';
+import 'package:zoom/pages/participant.dart';
 import 'package:zoom/theme/colors.dart';
 
 class Root extends StatefulWidget {
@@ -10,6 +11,8 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
+  int pageIndex = 2;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,21 +92,26 @@ class _RootState extends State<Root> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(bottomItems.length, (index) {
-              return Column(
-                children: [
-                  Icon(bottomItems[index],
-                      color: colorItems[index], size: sizedItems[index]),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    textItems[index],
-                    style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                        color: colorItems[index]),
-                  )
-                ],
+              return GestureDetector(
+                onTap: () {
+                  selectedTab(index);
+                },
+                child: Column(
+                  children: [
+                    Icon(bottomItems[index],
+                        color: colorItems[index], size: sizedItems[index]),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      textItems[index],
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: colorItems[index]),
+                    )
+                  ],
+                ),
               );
             })),
       ),
@@ -141,5 +149,18 @@ class _RootState extends State<Root> {
         ],
       ),
     );
+  }
+
+  selectedTab(index) {
+    setState(() {
+      pageIndex = index;
+    });
+
+    if (pageIndex == 3) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              fullscreenDialog: true, builder: (_) => ParticipantPage()));
+    }
   }
 }
