@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:keep/json/notes_json.dart';
 import 'package:keep/pages/sidemenu.dart';
 import 'package:keep/theme/colors.dart';
@@ -18,6 +20,8 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: bgColor,
       drawer: SideMenuPage(),
       body: buildBody(),
+      bottomSheet: buildBottomBar(),
+      floatingActionButton: buildFAB(),
     );
   }
 
@@ -139,6 +143,80 @@ class _HomePageState extends State<HomePage> {
           ),
         );
       }),
+    );
+  }
+
+  Widget buildBottomBar() {
+    var size = MediaQuery.of(context).size;
+    return Container(
+      width: size.width,
+      height: 50,
+      decoration: BoxDecoration(color: bgColor, boxShadow: [
+        BoxShadow(
+          color: black.withOpacity(0.2),
+          spreadRadius: 1,
+          blurRadius: 3,
+        ),
+      ]),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Row(
+          children: [
+            Container(
+              width: size.width * 0.7,
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      AntDesign.checksquare,
+                      size: 20,
+                      color: white.withOpacity(0.5),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      FontAwesome.paint_brush,
+                      size: 18,
+                      color: white.withOpacity(0.5),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.mic_rounded,
+                      size: 22,
+                      color: white.withOpacity(0.5),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      MaterialIcons.photo,
+                      size: 22,
+                      color: white.withOpacity(0.5),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  FloatingActionButton buildFAB() {
+    return FloatingActionButton(
+      onPressed: () {},
+      backgroundColor: bgColor,
+      child: Center(
+        child: SvgPicture.asset(
+          "assets/images/google_icon.svg",
+          width: 30,
+        ),
+      ),
     );
   }
 }
