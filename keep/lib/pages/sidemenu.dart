@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keep/json/sidemenu_icon_json.dart';
+import 'package:keep/pages/sidemenu_detail.dart';
 import 'package:keep/theme/colors.dart';
 
 class SideMenuPage extends StatefulWidget {
@@ -20,13 +21,13 @@ class _SideMenuPageState extends State<SideMenuPage> {
             children: [
               header(),
               // Notes, Reminders
-              sectionOne(),
+              section(2, 0),
               // Labels
-              sectionTwo(),
+              section(5, 2),
               // Archive, Trash
-              sectionThree(),
+              section(2, 7),
               // Settings, Feedback, Help
-              sectionFour(),
+              section(3, 9),
             ],
           ),
         ),
@@ -61,133 +62,41 @@ class _SideMenuPageState extends State<SideMenuPage> {
     );
   }
 
-  Widget sectionOne() {
-    return Column(
-      children: [
-        Column(
-          children: List.generate(2, (index) {
-            return FlatButton(
-              padding: EdgeInsets.zero,
-              onPressed: () {
-                Navigator.pop(context);
-                // Navigator.push(context, route);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 25, left: 25),
-                child: Row(
-                  children: [
-                    Icon(
-                      sideMenuItem[index]['icon'],
-                      color: white.withOpacity(0.7),
-                      size: 22,
-                    ),
-                    SizedBox(
-                      width: 25,
-                    ),
-                    Text(
-                      sideMenuItem[index]['text'],
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: white.withOpacity(0.7),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          }),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 75.0),
-          child: Divider(
-            thickness: 1,
-            color: white.withOpacity(0.1),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget sectionTwo() {
+  Widget section(int length, int startPoint) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 25, top: 15),
-          child: Text(
-            "LABELS",
-            style: TextStyle(fontSize: 12, color: white.withOpacity(0.7)),
-          ),
-        ),
-        Column(
-          children: List.generate(5, (index) {
-            return FlatButton(
-              padding: EdgeInsets.zero,
-              onPressed: () {
-                Navigator.pop(context);
-                // Navigator.push(context, route);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 25, left: 25),
-                child: Row(
-                  children: [
-                    Icon(
-                      sideMenuItem[index + 2]['icon'],
-                      color: white.withOpacity(0.7),
-                      size: 22,
-                    ),
-                    SizedBox(
-                      width: 25,
-                    ),
-                    Text(
-                      sideMenuItem[index + 2]['text'],
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: white.withOpacity(0.7),
-                      ),
-                    )
-                  ],
+        // LABELS Title if it is section two
+        startPoint == 2
+            ? Padding(
+                padding: const EdgeInsets.only(left: 25, top: 15),
+                child: Text(
+                  "LABELS",
+                  style: TextStyle(fontSize: 12, color: white.withOpacity(0.7)),
                 ),
-              ),
-            );
-          }),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 75.0),
-          child: Divider(
-            thickness: 1,
-            color: white.withOpacity(0.1),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget sectionThree() {
-    return Column(
-      children: [
+              )
+            : SizedBox(),
+        // Icon and Text
         Column(
-          children: List.generate(2, (index) {
+          children: List.generate(length, (index) {
             return FlatButton(
               padding: EdgeInsets.zero,
               onPressed: () {
                 Navigator.pop(context);
-                // Navigator.push(context, route);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SideMenuDetailPage(
+                        title: sideMenuItem[index + startPoint]['text']),
+                  ),
+                );
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 25, left: 25),
                 child: Row(
                   children: [
                     Icon(
-                      sideMenuItem[index + 7]['icon'],
+                      sideMenuItem[index + startPoint]['icon'],
                       color: white.withOpacity(0.7),
                       size: 22,
                     ),
@@ -195,58 +104,7 @@ class _SideMenuPageState extends State<SideMenuPage> {
                       width: 25,
                     ),
                     Text(
-                      sideMenuItem[index + 7]['text'],
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: white.withOpacity(0.7),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          }),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 75.0),
-          child: Divider(
-            thickness: 1,
-            color: white.withOpacity(0.1),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget sectionFour() {
-    return Column(
-      children: [
-        Column(
-          children: List.generate(3, (index) {
-            return FlatButton(
-              padding: EdgeInsets.zero,
-              onPressed: () {
-                Navigator.pop(context);
-                // Navigator.push(context, route);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 25, left: 25),
-                child: Row(
-                  children: [
-                    Icon(
-                      sideMenuItem[index + 9]['icon'],
-                      color: white.withOpacity(0.7),
-                      size: 22,
-                    ),
-                    SizedBox(
-                      width: 25,
-                    ),
-                    Text(
-                      sideMenuItem[index + 9]['text'],
+                      sideMenuItem[index + startPoint]['text'],
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
