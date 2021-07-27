@@ -1,7 +1,9 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:keep/json/notes_json.dart';
+import 'package:keep/pages/note_detail.dart';
 import 'package:keep/pages/sidemenu.dart';
 import 'package:keep/theme/colors.dart';
 import 'package:keep/widgets/header.dart';
@@ -68,76 +70,93 @@ class _HomePageState extends State<HomePage> {
 
     return Column(
       children: List.generate(notes.length, (index) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
-          child: Container(
-            width: size.width,
-            decoration: BoxDecoration(
-              color: cardColor,
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                color: white.withOpacity(0.1),
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => NoteDetailPage(
+                  title: notes[index]['title'],
+                  description: notes[index]['description'],
+                  images: notes[index]['img'],
+                ),
               ),
-            ),
+            );
+          },
+          child: ElasticIn(
+            duration: Duration(milliseconds: index * 850),
             child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 8, right: 8, top: 12, bottom: 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Title
-                  Text(
-                    notes[index]['title'],
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: white.withOpacity(0.9),
-                    ),
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+              child: Container(
+                width: size.width,
+                decoration: BoxDecoration(
+                  color: cardColor,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: white.withOpacity(0.1),
                   ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  // Description
-                  Text(
-                    notes[index]['description'],
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      color: white.withOpacity(0.7),
-                    ),
-                  ),
-                  // Person Icons
-                  Column(
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 8, right: 8, top: 12, bottom: 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 12,
+                      // Title
+                      Text(
+                        notes[index]['title'],
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: white.withOpacity(0.9),
+                        ),
                       ),
-                      Row(
-                        children: List.generate(notes[index]['img'].length,
-                            (indexImg) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 5.0),
-                            child: Container(
-                              width: 25,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: white.withOpacity(0.1),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      // Description
+                      Text(
+                        notes[index]['description'],
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: white.withOpacity(0.7),
+                        ),
+                      ),
+                      // Person Icons
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Row(
+                            children: List.generate(notes[index]['img'].length,
+                                (indexImg) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 5.0),
+                                child: Container(
+                                  width: 25,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: white.withOpacity(0.1),
+                                    ),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          notes[index]['img'][indexImg]),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      notes[index]['img'][indexImg]),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
+                              );
+                            }),
+                          )
+                        ],
                       )
                     ],
-                  )
-                ],
+                  ),
+                ),
               ),
             ),
           ),
