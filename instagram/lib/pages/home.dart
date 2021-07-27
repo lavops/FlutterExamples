@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/json/post_json.dart';
 import 'package:instagram/json/story_json.dart';
 import 'package:instagram/theme/colors.dart';
+import 'package:instagram/widgets/post.dart';
 import 'package:instagram/widgets/story.dart';
 
 class HomePage extends StatefulWidget {
@@ -95,6 +97,19 @@ class _HomePageState extends State<HomePage> {
           color: white.withOpacity(0.3),
         ),
         // Posts
+        Column(
+          children: List.generate(posts.length, (index) {
+            return Post(
+                profileImg: posts[index]['profileImg'],
+                name: posts[index]['name'],
+                postImg: posts[index]['postImg'],
+                caption: posts[index]['caption'],
+                isLoved: posts[index]['isLoved'],
+                likedBy: posts[index]['likedBy'],
+                viewCount: posts[index]['commentCount'],
+                dayAgo: posts[index]['timeAgo']);
+          }),
+        )
       ],
     );
   }
