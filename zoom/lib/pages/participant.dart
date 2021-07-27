@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:zoom/json/participants_json.dart';
 import 'package:zoom/theme/colors.dart';
@@ -24,7 +25,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
 
     return AppBar(
       elevation: 0,
-      centerTitle: true, // Kod androida je ovo po defaultu false
+      centerTitle: true, // default false
       backgroundColor: headerAndFooter,
       leading: GestureDetector(
         onTap: () {
@@ -34,7 +35,10 @@ class _ParticipantPageState extends State<ParticipantPage> {
           padding: const EdgeInsets.only(top: 20, left: 10),
           child: Text(
             "Close",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),
@@ -54,14 +58,18 @@ class _ParticipantPageState extends State<ParticipantPage> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: headerAndFooter),
+                borderRadius: BorderRadius.circular(8),
+                color: headerAndFooter,
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   "Invite",
                   style: TextStyle(
-                      color: grey, fontWeight: FontWeight.w600, fontSize: 15),
+                    color: grey,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                  ),
                 ),
               ),
             )
@@ -74,9 +82,11 @@ class _ParticipantPageState extends State<ParticipantPage> {
   Widget buildBody() {
     return SingleChildScrollView(
       child: Padding(
-          padding: const EdgeInsets.only(top: 15, bottom: 70),
-          child: Column(
-            children: List.generate(participants.length, (index) {
+        padding: const EdgeInsets.only(top: 15, bottom: 70),
+        child: Column(
+          children: List.generate(
+            participants.length,
+            (index) {
               return Column(
                 children: [
                   Padding(
@@ -84,6 +94,7 @@ class _ParticipantPageState extends State<ParticipantPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // Image and Name
                         Row(
                           children: [
                             Container(
@@ -92,9 +103,10 @@ class _ParticipantPageState extends State<ParticipantPage> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        participants[index]['img']),
-                                    fit: BoxFit.cover),
+                                  image:
+                                      NetworkImage(participants[index]['img']),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -103,12 +115,14 @@ class _ParticipantPageState extends State<ParticipantPage> {
                             Text(
                               participants[index]['name'],
                               style: TextStyle(
-                                  color: grey,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600),
+                                color: grey,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
                             )
                           ],
                         ),
+                        // Icons Microphone and Video
                         Row(
                           children: [
                             Icon(
@@ -135,8 +149,10 @@ class _ParticipantPageState extends State<ParticipantPage> {
                   Divider(color: grey.withOpacity(0.08))
                 ],
               );
-            }),
-          )),
+            },
+          ),
+        ),
+      ),
     );
   }
 }

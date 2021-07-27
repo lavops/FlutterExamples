@@ -7,12 +7,12 @@ import 'package:zoom/pages/home.dart';
 import 'package:zoom/pages/participant.dart';
 import 'package:zoom/theme/colors.dart';
 
-class Root extends StatefulWidget {
+class CallPage extends StatefulWidget {
   @override
-  _RootState createState() => _RootState();
+  _CallPageState createState() => _CallPageState();
 }
 
-class _RootState extends State<Root> {
+class _CallPageState extends State<CallPage> {
   int pageIndex = 2;
 
   @override

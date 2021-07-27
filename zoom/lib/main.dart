@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zoom/pages/root.dart';
+import 'package:zoom/pages/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Zoom UI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: Root(),
+      home: HomePage(),
     );
   }
 }

@@ -43,8 +43,9 @@ class _HomePageState extends State<HomePage> {
                   width: 8,
                   height: 8,
                   decoration: BoxDecoration(
-                      color: activeTab == index ? grey : grey.withOpacity(0.2),
-                      shape: BoxShape.circle),
+                    color: activeTab == index ? grey : grey.withOpacity(0.2),
+                    shape: BoxShape.circle,
+                  ),
                 ),
               );
             }),
@@ -66,44 +67,55 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            // Join Button
             GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        fullscreenDialog: true,
-                        builder: (_) => JoinMeetingPage()));
+                  context,
+                  MaterialPageRoute(
+                    fullscreenDialog: true,
+                    builder: (_) => JoinMeetingPage(),
+                  ),
+                );
               },
               child: Container(
                 width: size.width * 0.75,
                 height: 50,
                 decoration: BoxDecoration(
-                    color: primary, borderRadius: BorderRadius.circular(15)),
+                  color: primary,
+                  borderRadius: BorderRadius.circular(15),
+                ),
                 child: Center(
                   child: Text(
                     "Join a Meeting",
                     style: TextStyle(
-                        color: grey, fontSize: 17, fontWeight: FontWeight.w600),
+                      color: grey,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
             ),
+            // Sign Up and Sign In
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   "Sign Up",
                   style: TextStyle(
-                      color: primary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
+                    color: primary,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Text(
                   "Sign In",
                   style: TextStyle(
-                      color: primary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
+                    color: primary,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ],
             )
@@ -116,55 +128,65 @@ class _HomePageState extends State<HomePage> {
   Widget buildBody() {
     var size = MediaQuery.of(context).size;
     var options = CarouselOptions(
-        viewportFraction: 0.99,
-        height: size.height,
-        onPageChanged: (index, reason) {
-          setState(() {
-            activeTab = index;
-          });
+      viewportFraction: 0.99,
+      height: size.height,
+      onPageChanged: (index, reason) {
+        setState(() {
+          activeTab = index;
         });
+      },
+    );
 
     return CarouselSlider(
-        items: List.generate(items.length, (index) {
-          return Container(
-            width: size.width,
-            height: size.height,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      items[index]['title'],
-                      style: TextStyle(
-                          color: grey,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600),
+      items: List.generate(items.length, (index) {
+        return Container(
+          width: size.width,
+          height: size.height,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // Title and Description
+              Column(
+                children: [
+                  Text(
+                    items[index]['title'],
+                    style: TextStyle(
+                      color: grey,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
                     ),
-                    SizedBox(
-                      height: 20,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    items[index]['description'],
+                    style: TextStyle(
+                      color: grey,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
-                    Text(
-                      items[index]['description'],
-                      style: TextStyle(
-                          color: grey,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
+              // Image
+              Container(
+                width: 280,
+                height: 280,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      items[index]['img'],
                     ),
-                  ],
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                Container(
-                  width: 280,
-                  height: 280,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(items[index]['img']),
-                          fit: BoxFit.cover)),
-                )
-              ],
-            ),
-          );
-        }),
-        options: options);
+              )
+            ],
+          ),
+        );
+      }),
+      options: options,
+    );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zoom/pages/root.dart';
+import 'package:zoom/pages/call.dart';
 import 'package:zoom/theme/colors.dart';
 
 class JoinMeetingPage extends StatefulWidget {
@@ -14,10 +14,11 @@ class _JoinMeetingPageState extends State<JoinMeetingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: headerAndFooter,
-        appBar: buildAppBar(),
-        body: buildBody());
+      resizeToAvoidBottomInset: false,
+      backgroundColor: headerAndFooter,
+      appBar: buildAppBar(),
+      body: buildBody(),
+    );
   }
 
   AppBar buildAppBar() {
@@ -128,8 +129,10 @@ class _JoinMeetingPageState extends State<JoinMeetingPage> {
         // Join
         GestureDetector(
           onTap: () {
-            Navigator.pushAndRemoveUntil(context,
-                MaterialPageRoute(builder: (_) => Root()), (route) => false);
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => CallPage()),
+                (route) => false);
           },
           child: Container(
             width: size.width * 0.9,
