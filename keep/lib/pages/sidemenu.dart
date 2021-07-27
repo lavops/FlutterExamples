@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keep/json/sidemenu_icon_json.dart';
+import 'package:keep/pages/home.dart';
 import 'package:keep/pages/sidemenu_detail.dart';
 import 'package:keep/theme/colors.dart';
 
@@ -82,14 +83,24 @@ class _SideMenuPageState extends State<SideMenuPage> {
             return FlatButton(
               padding: EdgeInsets.zero,
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => SideMenuDetailPage(
-                        title: sideMenuItem[index + startPoint]['text']),
-                  ),
-                );
+                if (index + startPoint == 0) {
+                  Navigator.pop(context);
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => HomePage(),
+                      ),
+                      (route) => false);
+                } else {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => SideMenuDetailPage(
+                          title: sideMenuItem[index + startPoint]['text']),
+                    ),
+                  );
+                }
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 25, left: 25),
