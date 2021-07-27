@@ -103,5 +103,58 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildBody() {}
+  Widget buildBody() {
+    var size = MediaQuery.of(context).size;
+    var options = CarouselOptions(
+        viewportFraction: 0.99,
+        height: size.height,
+        onPageChanged: (index, reason) {
+          setState(() {
+            activeTab = index;
+          });
+        });
+
+    return CarouselSlider(
+        items: List.generate(items.length, (index) {
+          return Container(
+            width: size.width,
+            height: size.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      items[index]['title'],
+                      style: TextStyle(
+                          color: grey,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      items[index]['description'],
+                      style: TextStyle(
+                          color: grey,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+                Container(
+                  width: 280,
+                  height: 280,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(items[index]['img']),
+                          fit: BoxFit.cover)),
+                )
+              ],
+            ),
+          );
+        }),
+        options: options);
+  }
 }
