@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:keep/json/notes_json.dart';
 import 'package:keep/pages/sidemenu.dart';
 import 'package:keep/theme/colors.dart';
+import 'package:keep/widgets/header.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -28,45 +30,7 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.only(bottom: 50),
         children: [
           // Drawer button, Search, Profile Icon
-          Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Container(
-              width: size.width,
-              height: 45,
-              decoration: BoxDecoration(
-                color: cardColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: black.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 3,
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Row(
-                  children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            // Drawer
-                            _drawerKey.currentState?.openDrawer();
-                          },
-                          child: Icon(
-                            Icons.menu,
-                            color: white.withOpacity(0.7),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
+          Header(size: size, drawerKey: _drawerKey),
         ],
       ),
     );
