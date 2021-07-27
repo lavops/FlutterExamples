@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram/pages/home.dart';
 import 'package:instagram/theme/colors.dart';
 
 class RootPage extends StatefulWidget {
@@ -14,10 +15,10 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: black,
-      appBar: buildAppBar(),
-      bottomNavigationBar: buildBottomBar(),
-    );
+        backgroundColor: black,
+        appBar: buildAppBar(),
+        bottomNavigationBar: buildBottomBar(),
+        body: buildBody());
   }
 
   AppBar? buildAppBar() {
@@ -114,6 +115,47 @@ class _RootPageState extends State<RootPage> {
           }),
         ),
       ),
+    );
+  }
+
+  Widget buildBody() {
+    List<Widget> pages = [
+      HomePage(),
+      Center(
+        child: Text(
+          "Upload Page",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: white,
+          ),
+        ),
+      ),
+      Center(
+        child: Text(
+          "Activity Page",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: white,
+          ),
+        ),
+      ),
+      Center(
+        child: Text(
+          "Account Page",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: white,
+          ),
+        ),
+      )
+    ];
+
+    return IndexedStack(
+      index: pageIndex,
+      children: pages,
     );
   }
 }
