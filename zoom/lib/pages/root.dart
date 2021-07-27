@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:zoom/json/root_app_json.dart';
+import 'package:zoom/pages/home.dart';
 import 'package:zoom/pages/participant.dart';
 import 'package:zoom/theme/colors.dart';
 
@@ -60,16 +61,24 @@ class _RootState extends State<Root> {
               Icon(Icons.keyboard_arrow_down, color: green, size: 15)
             ],
           ),
-          Container(
-            decoration: BoxDecoration(
-                color: red, borderRadius: BorderRadius.circular(8)),
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 12, right: 12, top: 5, bottom: 5),
-              child: Text(
-                "Leave",
-                style: TextStyle(
-                    fontSize: 15, color: grey, fontWeight: FontWeight.w600),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => HomePage()),
+                  (route) => false);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: red, borderRadius: BorderRadius.circular(8)),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 12, right: 12, top: 5, bottom: 5),
+                child: Text(
+                  "Leave",
+                  style: TextStyle(
+                      fontSize: 15, color: grey, fontWeight: FontWeight.w600),
+                ),
               ),
             ),
           )
