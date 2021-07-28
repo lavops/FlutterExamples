@@ -11,10 +11,13 @@ class ChatDetailPage extends StatefulWidget {
 }
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
+  TextEditingController _sendMessageController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
+      bottomSheet: buildBottomBar(),
     );
   }
 
@@ -100,6 +103,101 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           width: 15,
         ),
       ],
+    );
+  }
+
+  Widget buildBottomBar() {
+    var size = MediaQuery.of(context).size;
+
+    return Container(
+      height: 60,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: grey.withOpacity(0.2),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+          bottom: 10,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Icons
+            Container(
+              width: (size.width - 40) / 2,
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.camera_alt,
+                    size: 35,
+                    color: primary,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(
+                    Icons.photo,
+                    size: 35,
+                    color: primary,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(
+                    Icons.keyboard_voice,
+                    size: 35,
+                    color: primary,
+                  ),
+                ],
+              ),
+            ),
+            // TextBox and Like
+            Container(
+              width: (size.width - 40) / 2,
+              child: Row(
+                children: [
+                  // TextBox
+                  Container(
+                    width: (size.width - 140) / 2,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: grey,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12),
+                      child: TextField(
+                        cursorColor: black,
+                        controller: _sendMessageController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Aa",
+                          suffixIcon: Icon(
+                            Icons.face,
+                            color: primary,
+                            size: 35,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  // Like Icon
+                  Icon(
+                    Icons.thumb_up,
+                    size: 35,
+                    color: primary,
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
