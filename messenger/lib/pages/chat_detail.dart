@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:messenger/json/data.dart';
 import 'package:messenger/theme/colors.dart';
+import 'package:messenger/widgets/chart_bubble.dart';
 
 class ChatDetailPage extends StatefulWidget {
   ChatDetailPage({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
     return Scaffold(
       appBar: buildAppBar(),
       bottomSheet: buildBottomBar(),
+      body: buildBody(),
     );
   }
 
@@ -27,7 +29,9 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       elevation: 0,
       centerTitle: false,
       leading: FlatButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         child: Icon(
           Icons.arrow_back_ios,
           color: primary,
@@ -198,6 +202,25 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget buildBody() {
+    return ListView(
+      padding: EdgeInsets.only(
+        right: 20,
+        left: 20,
+        top: 20,
+        bottom: 80,
+      ),
+      children: List.generate(messages.length, (index) {
+        return ChatBubble(
+          isMe: messages[index]['isMe'],
+          profileImg: messages[index]['profileImg'],
+          message: messages[index]['message'],
+          messageType: messages[index]['messageType'],
+        );
+      }),
     );
   }
 }
