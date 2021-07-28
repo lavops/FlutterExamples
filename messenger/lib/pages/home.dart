@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:messenger/json/data.dart';
 import 'package:messenger/theme/colors.dart';
+import 'package:messenger/widgets/story.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -39,6 +41,7 @@ class _HomePageState extends State<HomePage> {
             height: 30,
           ),
           // Stories
+          buildStories(),
         ],
       ),
     );
@@ -90,6 +93,58 @@ class _HomePageState extends State<HomePage> {
           hintText: "Search",
           border: InputBorder.none,
         ),
+      ),
+    );
+  }
+
+  Widget buildStories() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          // Your Story
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Column(
+              children: [
+                Container(
+                  width: 70,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: grey,
+                  ),
+                  child: Icon(
+                    LineIcons.plus,
+                    size: 33,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  width: 75,
+                  child: Align(
+                    child: Text(
+                      "Your Story",
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          // Other Stories
+          Row(
+            children: List.generate(userStories.length, (index) {
+              return Story(
+                  isStory: userStories[index]['story'],
+                  isOnline: userStories[index]['online'],
+                  profileImg: userStories[index]['img'],
+                  name: userStories[index]['name']);
+            }),
+          )
+        ],
       ),
     );
   }
