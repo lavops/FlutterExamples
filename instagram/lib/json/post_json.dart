@@ -20,7 +20,7 @@ List posts = [
     "postImg":
         "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Z2lybHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
     "caption":
-        " ទឹកមុខនៅពេលយើងអត់ចង់ថតរូបនៅកន្លែងសួនផ្កា ហើយគេបង្ខំអោយយើងថត។ 😏😒",
+        " I love how a 6-year-old kid took better photos than many of my friends out there 😏😒",
     "isLoved": true,
     "commentCount": "10",
     "likedBy": "sonitakhoun",

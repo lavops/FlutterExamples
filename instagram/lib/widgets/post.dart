@@ -77,7 +77,7 @@ class Post extends StatelessWidget {
           ),
           // Post Img
           Container(
-            height: 400,
+            height: 200,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(postImg),

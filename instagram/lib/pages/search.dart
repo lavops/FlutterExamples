@@ -37,6 +37,7 @@ class _SearchPageState extends State<SearchPage> {
                     prefix: Icon(
                       Icons.search,
                       color: white.withOpacity(0.5),
+                      size: 22,
                     ),
                   ),
                   style: TextStyle(
@@ -62,6 +63,28 @@ class _SearchPageState extends State<SearchPage> {
             }),
           ),
         ),
+        SizedBox(
+          height: 15,
+        ),
+        // Posts
+        Wrap(
+          spacing: 1,
+          runSpacing: 1,
+          children: List.generate(searchImages.length, (index) {
+            return Container(
+              width: (size.width - 3) / 3,
+              height: (size.width - 3) / 3,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    searchImages[index],
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
+          }),
+        )
       ],
     );
   }
