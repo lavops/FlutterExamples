@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:messenger/json/data.dart';
+import 'package:messenger/pages/chat_detail.dart';
 import 'package:messenger/theme/colors.dart';
 import 'package:messenger/widgets/profile_stack.dart';
 import 'package:messenger/widgets/story.dart';
@@ -161,7 +162,14 @@ class _HomePageState extends State<HomePage> {
     return Column(
       children: List.generate(userMessages.length, (index) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ChatDetailPage(),
+              ),
+            );
+          },
           child: Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: Row(
