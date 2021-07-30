@@ -254,6 +254,120 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        SizedBox(
+          height: 15,
+        ),
+        // Food Stores
+        Container(
+          width: size.width,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Image with heart
+                Stack(
+                  children: [
+                    // Image
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: size.width,
+                        height: 160,
+                        child: Image(
+                          image: NetworkImage(firstMenu[0]['img']),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    // Heart icon
+                    Positioned(
+                      bottom: 15,
+                      right: 15,
+                      child: SvgPicture.asset(
+                        firstMenu[0]['is_liked']
+                            ? "assets/images/loved_icon.svg"
+                            : "assets/images/love_icon.svg",
+                        width: 20,
+                        color: white,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                // Food Store Name
+                Text(
+                  firstMenu[0]['name'],
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                // Time to make and Delivery fee
+                Row(
+                  children: [
+                    // Hourglass Icon
+                    Container(
+                      decoration: BoxDecoration(
+                        color: textFieldColor,
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Icon(
+                          Icons.hourglass_bottom,
+                          color: primary,
+                          size: 16,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    // Time Text
+                    Container(
+                      decoration: BoxDecoration(
+                        color: textFieldColor,
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Text(
+                        firstMenu[0]['time'],
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    // Delivery Fee Text
+                    Container(
+                      decoration: BoxDecoration(
+                        color: textFieldColor,
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Text(
+                        firstMenu[0]['delivery_fee'],
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 15,
+        ),
+        //
       ],
     );
   }
