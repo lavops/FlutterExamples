@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ubereats/json/home_page_json.dart';
 import 'package:ubereats/theme/colors.dart';
 import 'package:ubereats/theme/styles.dart';
+import 'package:ubereats/widgets/custom_slider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -197,6 +198,13 @@ class _HomePageState extends State<HomePage> {
           height: 15,
         ),
         // Sliding Images
+        CustomSliderWidget(
+          items: [
+            "assets/images/slide_1.jpg",
+            "assets/images/slide_2.jpg",
+            "assets/images/slide_3.jpg"
+          ],
+        )
       ],
     );
   }
