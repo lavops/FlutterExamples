@@ -204,7 +204,56 @@ class _HomePageState extends State<HomePage> {
             "assets/images/slide_2.jpg",
             "assets/images/slide_3.jpg"
           ],
-        )
+        ),
+        // Categories
+        Container(
+          width: size.width,
+          decoration: BoxDecoration(
+            color: textFieldColor,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                color: white,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 15,
+                  bottom: 15,
+                ),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 30),
+                    child: Row(
+                      children: List.generate(categories.length, (index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 35),
+                          child: Column(
+                            children: [
+                              SvgPicture.asset(
+                                categories[index]['img'],
+                                width: 40,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                categories[index]['name'],
+                                style: customParagraph,
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
