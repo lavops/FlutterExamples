@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:ubereats/json/home_page_json.dart';
 import 'package:ubereats/theme/colors.dart';
 import 'package:ubereats/theme/styles.dart';
 
@@ -281,7 +284,110 @@ class _StorePageState extends State<StorePage> {
                   SizedBox(
                     height: 15,
                   ),
-                  //
+                  // Location and more info
+                  Row(
+                    children: [
+                      // Location
+                      Container(
+                        width: size.width * 0.8,
+                        child: Row(
+                          children: [
+                            // Pin Icon
+                            SvgPicture.asset(
+                              "assets/images/pin_icon.svg",
+                              width: 15,
+                              color: black.withOpacity(0.5),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            // Location Text
+                            Text(
+                              "Kraljevo, Cara Dusana",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      // More Info
+                      Expanded(
+                        child: Text(
+                          "More Info",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  // People say
+                  Row(
+                    children: [
+                      // Comment icon
+                      Icon(
+                        LineIcons.comment,
+                        size: 15,
+                        color: primary,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      // People say text
+                      Text(
+                        "People say...",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: black.withOpacity(0.5),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  // Reviews
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(peopleFeedback.length, (index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 15),
+                          child: Container(
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: primary.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Text(
+                                  peopleFeedback[index],
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: primary,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  // Delivery Fee
                 ],
               ),
             )
