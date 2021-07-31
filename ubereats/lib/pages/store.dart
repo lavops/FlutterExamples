@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ubereats/theme/colors.dart';
+import 'package:ubereats/theme/styles.dart';
 
 class StorePage extends StatefulWidget {
   final String img;
@@ -144,7 +145,146 @@ class _StorePageState extends State<StorePage> {
             SizedBox(
               height: 15,
             ),
-            // Name
+            // Food Description
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Name
+                  Text(
+                    widget.name,
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  // Description
+                  Row(
+                    children: [
+                      Container(
+                        width: size.width - 30,
+                        child: Text(
+                          widget.description,
+                          style: TextStyle(
+                            fontSize: 14,
+                            height: 1.3,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  // Time and Rating
+                  Container(
+                    child: Row(
+                      children: [
+                        // Hourglass Icon
+                        Container(
+                          decoration: BoxDecoration(
+                            color: textFieldColor,
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Icon(
+                              Icons.hourglass_bottom,
+                              color: primary,
+                              size: 16,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        // Time
+                        Container(
+                          decoration: BoxDecoration(
+                            color: textFieldColor,
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Text(
+                              widget.time,
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        // Rating
+                        Container(
+                          decoration: BoxDecoration(
+                            color: textFieldColor,
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              children: [
+                                // Rate
+                                Text(
+                                  widget.rate,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                // Star Icon
+                                Icon(
+                                  Icons.star,
+                                  color: primary,
+                                  size: 17,
+                                ),
+                                // Number of ratings
+                                Text(
+                                  "(" + widget.rateNumber + ")",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Divider(
+                    color: black.withOpacity(0.3),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  // Store Info
+                  Text(
+                    "Store Info",
+                    style: customContent,
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  //
+                ],
+              ),
+            )
           ],
         ),
       ),
