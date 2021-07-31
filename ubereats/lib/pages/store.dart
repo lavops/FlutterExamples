@@ -33,6 +33,7 @@ class _StorePageState extends State<StorePage> {
     return Scaffold(
       backgroundColor: white,
       bottomSheet: buildBottomSheet(),
+      body: buildBody(),
     );
   }
 
@@ -62,6 +63,88 @@ class _StorePageState extends State<StorePage> {
                 fontWeight: FontWeight.w500,
               ),
             )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildBody() {
+    var size = MediaQuery.of(context).size;
+
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 60),
+        child: Column(
+          children: [
+            // Image with Icons
+            Stack(
+              children: [
+                // Image
+                Container(
+                  width: size.width,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(widget.img),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                // Icons
+                SafeArea(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Back Icon
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.arrow_back,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Liked
+                      IconButton(
+                        onPressed: () {},
+                        icon: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: Icon(
+                              widget.isLiked
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            // Name
           ],
         ),
       ),
