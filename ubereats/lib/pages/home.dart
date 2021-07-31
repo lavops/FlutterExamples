@@ -288,9 +288,51 @@ class _HomePageState extends State<HomePage> {
         ),
         SizedBox(
           height: 20,
-        )
+        ),
         // More to explore
-
+        Container(
+          margin: const EdgeInsets.only(
+            left: 15,
+            right: 15,
+            bottom: 30,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "More to expolore",
+                style: customTitle,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(exploreMenu.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: FoodWidget(
+                        img: exploreMenu[index]['img'],
+                        name: exploreMenu[index]['name'],
+                        description: exploreMenu[index]['description'],
+                        time: exploreMenu[index]['time'],
+                        fee: exploreMenu[index]['delivery_fee'],
+                        isLiked: exploreMenu[index]['is_liked'],
+                        rate: exploreMenu[index]['rate'],
+                        rateNumber: exploreMenu[index]['rate_number'],
+                        sponsored: true,
+                      ),
+                    );
+                  }),
+                ),
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
         // Popular near you
       ],
     );
