@@ -21,7 +21,9 @@ const List firstMenu = [
     "name": "Mary's Breakfast Burritos",
     "description": "Breakfast and Brunch - American - Sandwiches",
     "time": "45-55 Min",
-    "delivery_fee": "\$1.49 Delivery Fee"
+    "delivery_fee": "\$1.49 Delivery Fee",
+    "rate": "4.5",
+    "rate_number": "105"
   }
 ];
 const List exploreMenu = [

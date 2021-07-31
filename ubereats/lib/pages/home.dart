@@ -5,6 +5,7 @@ import 'package:ubereats/json/home_page_json.dart';
 import 'package:ubereats/theme/colors.dart';
 import 'package:ubereats/theme/styles.dart';
 import 'package:ubereats/widgets/custom_slider.dart';
+import 'package:ubereats/widgets/food.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -257,117 +258,40 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           height: 15,
         ),
-        // Food Stores
+        // Featured Food Store
         Container(
           width: size.width,
           child: Padding(
             padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Image with heart
-                Stack(
-                  children: [
-                    // Image
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        width: size.width,
-                        height: 160,
-                        child: Image(
-                          image: NetworkImage(firstMenu[0]['img']),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    // Heart icon
-                    Positioned(
-                      bottom: 15,
-                      right: 15,
-                      child: SvgPicture.asset(
-                        firstMenu[0]['is_liked']
-                            ? "assets/images/loved_icon.svg"
-                            : "assets/images/love_icon.svg",
-                        width: 20,
-                        color: white,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                // Food Store Name
-                Text(
-                  firstMenu[0]['name'],
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                // Time to make and Delivery fee
-                Row(
-                  children: [
-                    // Hourglass Icon
-                    Container(
-                      decoration: BoxDecoration(
-                        color: textFieldColor,
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Icon(
-                          Icons.hourglass_bottom,
-                          color: primary,
-                          size: 16,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    // Time Text
-                    Container(
-                      decoration: BoxDecoration(
-                        color: textFieldColor,
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Text(
-                        firstMenu[0]['time'],
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    // Delivery Fee Text
-                    Container(
-                      decoration: BoxDecoration(
-                        color: textFieldColor,
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Text(
-                        firstMenu[0]['delivery_fee'],
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
+            child: FoodWidget(
+              img: firstMenu[0]['img'],
+              name: firstMenu[0]['name'],
+              description: firstMenu[0]['description'],
+              time: firstMenu[0]['time'],
+              fee: firstMenu[0]['delivery_fee'],
+              isLiked: firstMenu[0]['is_liked'],
+              rate: firstMenu[0]['rate'],
+              rateNumber: firstMenu[0]['rate_number'],
+              sponsored: false,
             ),
           ),
         ),
         SizedBox(
-          width: 15,
+          height: 15,
         ),
-        //
+        Container(
+          width: size.width,
+          height: 10,
+          decoration: BoxDecoration(
+            color: textFieldColor,
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        )
+        // More to explore
+
+        // Popular near you
       ],
     );
   }
