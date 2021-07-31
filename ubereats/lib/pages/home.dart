@@ -273,6 +273,7 @@ class _HomePageState extends State<HomePage> {
               rate: firstMenu[0]['rate'],
               rateNumber: firstMenu[0]['rate_number'],
               sponsored: false,
+              size: size,
             ),
           ),
         ),
@@ -322,6 +323,7 @@ class _HomePageState extends State<HomePage> {
                         rate: exploreMenu[index]['rate'],
                         rateNumber: exploreMenu[index]['rate_number'],
                         sponsored: true,
+                        size: size,
                       ),
                     );
                   }),
@@ -330,10 +332,61 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+        // SizedBox(
+        //   height: 15,
+        // ),
+        Container(
+          width: size.width,
+          height: 10,
+          decoration: BoxDecoration(
+            color: textFieldColor,
+          ),
+        ),
         SizedBox(
-          height: 15,
+          height: 20,
         ),
         // Popular near you
+        Container(
+          margin: const EdgeInsets.only(
+            left: 15,
+            right: 15,
+            bottom: 30,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Popular Near You",
+                style: customTitle,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(popluarNearYou.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: FoodWidget(
+                        img: popluarNearYou[index]['img'],
+                        name: popluarNearYou[index]['name'],
+                        description: popluarNearYou[index]['description'],
+                        time: popluarNearYou[index]['time'],
+                        fee: popluarNearYou[index]['delivery_fee'],
+                        isLiked: popluarNearYou[index]['is_liked'],
+                        rate: popluarNearYou[index]['rate'],
+                        rateNumber: popluarNearYou[index]['rate_number'],
+                        sponsored: true,
+                        size: size,
+                      ),
+                    );
+                  }),
+                ),
+              )
+            ],
+          ),
+        ),
       ],
     );
   }

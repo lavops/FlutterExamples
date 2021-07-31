@@ -12,6 +12,7 @@ class FoodWidget extends StatelessWidget {
   final String rate;
   final String rateNumber;
   final bool sponsored;
+  final size;
 
   const FoodWidget(
       {Key? key,
@@ -23,13 +24,12 @@ class FoodWidget extends StatelessWidget {
       required this.isLiked,
       required this.rate,
       required this.rateNumber,
-      required this.sponsored})
+      required this.sponsored,
+      required this.size})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,7 +40,7 @@ class FoodWidget extends StatelessWidget {
             GestureDetector(
               onTap: () {},
               child: Container(
-                width: size.width,
+                width: sponsored ? size.width - 30 : size.width,
                 height: 160,
                 child: Image(
                   image: NetworkImage(img),
