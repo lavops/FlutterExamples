@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ubereats/pages/store.dart';
 import 'package:ubereats/theme/colors.dart';
 
 class FoodWidget extends StatelessWidget {
@@ -38,7 +39,23 @@ class FoodWidget extends StatelessWidget {
           children: [
             // Image
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => StorePage(
+                      img: img,
+                      name: name,
+                      description: description,
+                      time: time,
+                      fee: fee,
+                      isLiked: isLiked,
+                      rate: rate,
+                      rateNumber: rateNumber,
+                    ),
+                  ),
+                );
+              },
               child: Container(
                 width: sponsored ? size.width - 30 : size.width,
                 height: 160,
