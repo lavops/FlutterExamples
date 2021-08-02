@@ -388,6 +388,184 @@ class _StorePageState extends State<StorePage> {
                     height: 15,
                   ),
                   // Delivery Fee
+                  Container(
+                    width: size.width - 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: black.withOpacity(0.1),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Delivery fee",
+                            style: TextStyle(
+                              color: black.withOpacity(0.5),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: (size.width - 70) * 0.8,
+                                child: Text(
+                                  "There aren't enough couriers nearby,so the delivery fee is higher right now.",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: (size.width - 70) * 0.2,
+                                child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: black.withOpacity(0.15),
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.arrow_circle_up_outlined,
+                                      color: black.withOpacity(0.4),
+                                      size: 18,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Divider(
+                    color: black.withOpacity(0.3),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  //
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Menu and search icon
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Menu",
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                          Icon(
+                            LineIcons.search,
+                            size: 25,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      // Packed for you
+                      Text(
+                        "Packed for you",
+                        style: TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      // Menu Items
+                      Column(
+                        children: List.generate(packForYou.length, (index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 40),
+                            child: Row(
+                              children: [
+                                // Item name, desc, price
+                                Container(
+                                  width: (size.width - 30) * 0.6,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      // Name
+                                      Text(
+                                        packForYou[index]['name'],
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          height: 1.5,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      // Desc
+                                      Text(
+                                        packForYou[index]['description'],
+                                        style: TextStyle(
+                                          height: 1.5,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      // Price
+                                      Text(
+                                        packForYou[index]['price'],
+                                        style: TextStyle(
+                                          height: 1.3,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                // Image
+                                Expanded(
+                                  child: Container(
+                                    height: 110,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 20,
+                                        top: 10,
+                                        bottom: 10,
+                                      ),
+                                      child: Image(
+                                        image: NetworkImage(
+                                          packForYou[index]['img'],
+                                        ),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        }),
+                      )
+                    ],
+                  )
                 ],
               ),
             )
