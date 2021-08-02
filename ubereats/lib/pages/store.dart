@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:ubereats/json/home_page_json.dart';
 import 'package:ubereats/theme/colors.dart';
 import 'package:ubereats/theme/styles.dart';
+import 'package:ubereats/widgets/menu_item.dart';
 
 class StorePage extends StatefulWidget {
   final String img;
@@ -493,74 +494,12 @@ class _StorePageState extends State<StorePage> {
                       // Menu Items
                       Column(
                         children: List.generate(packForYou.length, (index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 40),
-                            child: Row(
-                              children: [
-                                // Item name, desc, price
-                                Container(
-                                  width: (size.width - 30) * 0.6,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      // Name
-                                      Text(
-                                        packForYou[index]['name'],
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          height: 1.5,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      // Desc
-                                      Text(
-                                        packForYou[index]['description'],
-                                        style: TextStyle(
-                                          height: 1.5,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      // Price
-                                      Text(
-                                        packForYou[index]['price'],
-                                        style: TextStyle(
-                                          height: 1.3,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                // Image
-                                Expanded(
-                                  child: Container(
-                                    height: 110,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 20,
-                                        top: 10,
-                                        bottom: 10,
-                                      ),
-                                      child: Image(
-                                        image: NetworkImage(
-                                          packForYou[index]['img'],
-                                        ),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                          return MenuItemWidget(
+                            size: size,
+                            name: packForYou[index]['name'],
+                            description: packForYou[index]['description'],
+                            price: packForYou[index]['price'],
+                            image: packForYou[index]['img'],
                           );
                         }),
                       )
