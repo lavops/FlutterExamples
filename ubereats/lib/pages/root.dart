@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ubereats/pages/home.dart';
 import 'package:ubereats/theme/colors.dart';
 
 class RootPage extends StatefulWidget {
@@ -14,7 +15,59 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: buildBody(),
       bottomNavigationBar: buildBottomBar(),
+    );
+  }
+
+  Widget buildBody() {
+    List<Widget> pages = [
+      HomePage(),
+      Center(
+        child: Text(
+          "Search Page",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: black,
+          ),
+        ),
+      ),
+      Center(
+        child: Text(
+          "Grocery Page",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: black,
+          ),
+        ),
+      ),
+      Center(
+        child: Text(
+          "Orders Page",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: black,
+          ),
+        ),
+      ),
+      Center(
+        child: Text(
+          "Account Page",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: black,
+          ),
+        ),
+      )
+    ];
+
+    return IndexedStack(
+      index: pageIndex,
+      children: pages,
     );
   }
 
@@ -53,7 +106,9 @@ class _RootPageState extends State<RootPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(textItems.length, (index) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                changeTab(index);
+              },
               child: Column(
                 children: [
                   SvgPicture.asset(
@@ -78,5 +133,11 @@ class _RootPageState extends State<RootPage> {
         ),
       ),
     );
+  }
+
+  changeTab(index) {
+    setState(() {
+      pageIndex = index;
+    });
   }
 }
