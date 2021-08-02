@@ -457,7 +457,7 @@ class _StorePageState extends State<StorePage> {
                   SizedBox(
                     height: 10,
                   ),
-                  //
+                  // Menu Items
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
