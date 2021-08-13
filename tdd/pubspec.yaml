@@ -33,7 +33,7 @@ dependencies:
   bloc: ^7.0.0
   equatable: ^2.0.3
   dartz: ^0.10.0-nullsafety.2
-  connectivity: ^3.0.6
+  internet_connection_checker: ^0.0.1+2
   http: ^0.13.3
   shared_preferences: ^2.0.6
 
@@ -41,6 +41,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^0.1.4
+  mockito: ^5.0.14
+  build_runner: ^2.1.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
