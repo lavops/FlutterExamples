@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:tdd/core/error/exceptions.dart';
 import 'package:tdd/core/platform/network_info.dart';
 import 'package:tdd/features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
@@ -17,9 +18,9 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
   final NetworkInfo networkInfo;
 
   NumberTriviaRepositoryImpl({
-    required this.remoteDataSource,
-    required this.localDataSource,
-    required this.networkInfo,
+    @required this.remoteDataSource,
+    @required this.localDataSource,
+    @required this.networkInfo,
   });
 
   @override

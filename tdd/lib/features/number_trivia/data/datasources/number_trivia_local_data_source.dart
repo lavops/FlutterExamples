@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tdd/core/error/exceptions.dart';
 import 'package:tdd/features/number_trivia/data/models/number_trivia_model.dart';
@@ -16,7 +17,7 @@ class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDataSource {
   final SharedPreferences sharedPreferences;
 
   NumberTriviaLocalDataSourceImpl({
-    required this.sharedPreferences,
+    @required this.sharedPreferences,
   });
 
   @override

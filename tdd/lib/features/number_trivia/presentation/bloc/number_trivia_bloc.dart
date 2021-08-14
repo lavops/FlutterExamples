@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:tdd/core/error/failures.dart';
 import 'package:tdd/core/usecases/usecase.dart';
 import 'package:tdd/core/utils/input_converter.dart';
@@ -24,13 +25,10 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   final InputConverter inputConverter;
 
   NumberTriviaBloc({
-    required GetConcreteNumberTrivia concrete,
-    required GetRandomNumberTrivia random,
-    required this.inputConverter,
-  })  : assert(concrete != null),
-        assert(random != null),
-        assert(inputConverter != null),
-        getConcreteNumberTrivia = concrete,
+    @required GetConcreteNumberTrivia concrete,
+    @required GetRandomNumberTrivia random,
+    @required this.inputConverter,
+  })  : getConcreteNumberTrivia = concrete,
         getRandomNumberTrivia = random,
         super(Empty());
 

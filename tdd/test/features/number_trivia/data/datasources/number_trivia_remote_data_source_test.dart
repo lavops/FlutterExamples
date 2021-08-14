@@ -1,19 +1,17 @@
 import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:mocktail/mocktail.dart';
+import 'package:mockito/mockito.dart';
 import 'package:tdd/core/error/exceptions.dart';
 import 'package:tdd/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:tdd/features/number_trivia/data/models/number_trivia_model.dart';
-
 import '../../../../fixtures/fixture_reader.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
-  late NumberTriviaRemoteDataSourceImpl datasource;
-  late MockHttpClient mockHttpClient;
+  NumberTriviaRemoteDataSourceImpl datasource;
+  MockHttpClient mockHttpClient;
 
   setUp(() {
     mockHttpClient = MockHttpClient();
@@ -21,14 +19,12 @@ void main() {
   });
 
   void setUpMockHttpClientSuccess200() {
-    when(() => mockHttpClient
-            .get(Uri(), headers: {'Content-Type': 'application/json'}))
+    when(mockHttpClient.get(any, headers: anyNamed('headers')))
         .thenAnswer((_) async => http.Response(fixture('trivia.json'), 200));
   }
 
   void setUpMockHttpClientFailure404() {
-    when(() => mockHttpClient
-            .get(Uri(), headers: {'Content-Type': 'application/json'}))
+    when(mockHttpClient.get(any, headers: anyNamed('headers')))
         .thenAnswer((_) async => http.Response('Failure', 404));
   }
 
@@ -46,7 +42,7 @@ void main() {
       datasource.getConcreteNumberTrivia(tNumber);
       // assert
       verify(
-        () => mockHttpClient.get(
+        mockHttpClient.get(
           Uri.parse('http://numbersapi.com/$tNumber'),
           headers: {'Content-Type': 'application/json'},
         ),
@@ -71,7 +67,7 @@ void main() {
       // act
       final call = datasource.getConcreteNumberTrivia;
       // assert
-      expect(() => call(tNumber), throwsA(TypeMatcher<ServerException>()));
+      expect(call(tNumber), throwsA(TypeMatcher<ServerException>()));
     });
   });
 
@@ -88,7 +84,7 @@ void main() {
       datasource.getRandomNumberTrivia();
       // assert
       verify(
-        () => mockHttpClient.get(
+        mockHttpClient.get(
           Uri.parse('http://numbersapi.com/random'),
           headers: {'Content-Type': 'application/json'},
         ),
@@ -113,7 +109,7 @@ void main() {
       // act
       final call = datasource.getRandomNumberTrivia;
       // assert
-      expect(() => call(), throwsA(TypeMatcher<ServerException>()));
+      expect(call(), throwsA(TypeMatcher<ServerException>()));
     });
   });
 }
