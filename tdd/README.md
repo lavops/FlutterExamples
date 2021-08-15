@@ -10,8 +10,8 @@
 │  ├─ network/                 
 │  └─ usecases/                
 │
-├─ fetures/
-│  └─ feture/
+├─ features/
+│  └─ feature/
 │     ├─ data/                       
 │     │  ├─ datasources/             
 │     │  ├─ models/                   
