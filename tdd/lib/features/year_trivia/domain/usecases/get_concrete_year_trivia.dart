@@ -23,6 +23,5 @@ class YearParams extends Equatable {
   YearParams({@required this.year});
 
   @override
-  // TODO: implement props
   List<Object> get props => [year];
 }
