@@ -17,7 +17,7 @@ void main() {
     usecase = GetRandomYearTrivia(repository: repository);
   });
 
-  final tYearTrivia = YearTrivia(text: 'text', number: 1997);
+  final tYearTrivia = YearTrivia(text: 'text', year: 1997);
 
   test('should get trivia from the repository', () async {
     // arrange
