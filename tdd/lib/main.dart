@@ -18,7 +18,60 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: YearTriviaPage(),
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  TabController _tabController;
+  List<StatelessWidget> _kTabPages = [NumberTriviaPage(), YearTriviaPage()];
+  List<Tab> _kTabs = [
+    Tab(
+      icon: Icon(Icons.filter_1),
+      text: 'Number Trivia',
+    ),
+    Tab(
+      icon: Icon(Icons.filter_2),
+      text: 'Year Trivia',
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: _kTabPages.length,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: TabBarView(
+        children: _kTabPages,
+        controller: _tabController,
+      ),
+      bottomNavigationBar: Material(
+        color: Colors.blue,
+        child: TabBar(
+          tabs: _kTabs,
+          controller: _tabController,
+        ),
+      ),
     );
   }
 }
