@@ -11,6 +11,13 @@ import 'package:tdd/features/number_trivia/domain/repositories/number_trivia_rep
 import 'package:tdd/features/number_trivia/domain/usecases/get_concrete_number_trivia.dart';
 import 'package:tdd/features/number_trivia/domain/usecases/get_random_number_trivia.dart';
 import 'package:tdd/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
+import 'package:tdd/features/year_trivia/data/datasources/year_trivia_local_data_source.dart';
+import 'package:tdd/features/year_trivia/data/datasources/year_trivia_remote_data_source.dart';
+import 'package:tdd/features/year_trivia/data/repositories/year_trivia_repository_impl.dart';
+import 'package:tdd/features/year_trivia/domain/repositories/year_trivia_repository.dart';
+import 'package:tdd/features/year_trivia/domain/usecases/get_concrete_year_trivia.dart';
+import 'package:tdd/features/year_trivia/domain/usecases/get_random_year_trivia.dart';
+import 'package:tdd/features/year_trivia/presentation/bloc/year_trivia_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -24,14 +31,33 @@ Future<void> init() async {
       inputConverter: sl(),
     ),
   );
+  // BLoC - Year Trivia
+  sl.registerFactory(
+    () => YearTriviaBloc(
+      concrete: sl(),
+      random: sl(),
+      inputConverter: sl(),
+    ),
+  );
 
   // Use cases - Number Trivia
   sl.registerLazySingleton(() => GetConcreteNumberTrivia(sl()));
   sl.registerLazySingleton(() => GetRandomNumberTrivia(sl()));
+  // Use cases - Year Trivia
+  sl.registerLazySingleton(() => GetConcreteYearTrivia(sl()));
+  sl.registerLazySingleton(() => GetRandomYearTrivia(sl()));
 
   // Repository - Number Trivia
   sl.registerLazySingleton<NumberTriviaRepository>(
     () => NumberTriviaRepositoryImpl(
+      remoteDataSource: sl(),
+      localDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+  // Repository - Year Trivia
+  sl.registerLazySingleton<YearTrivaRepository>(
+    () => YearTriviaRepositoryImpl(
       remoteDataSource: sl(),
       localDataSource: sl(),
       networkInfo: sl(),
@@ -49,6 +75,18 @@ Future<void> init() async {
       sharedPreferences: sl(),
     ),
   );
+  // Data sources - Year Trivia
+  sl.registerLazySingleton<YearTriviaRemoteDataSource>(
+    () => YearTriviaRemoteDataSourceImpl(
+      client: sl(),
+    ),
+  );
+  sl.registerLazySingleton<YearTriviaLocalDataSource>(
+    () => YearTriviaLocalDataSourceImpl(
+      sharedPreferences: sl(),
+    ),
+  );
+
   //! Core
   sl.registerLazySingleton(() => InputConverter());
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
