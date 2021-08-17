@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:tdd/core/error/failures.dart';
 import 'package:tdd/core/usecases/usecase.dart';
 import 'package:tdd/core/utils/input_converter.dart';
-import 'package:tdd/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
 import 'package:tdd/features/year_trivia/domain/entities/year_trivia.dart';
 import 'package:tdd/features/year_trivia/domain/usecases/get_concrete_year_trivia.dart';
 import 'package:tdd/features/year_trivia/domain/usecases/get_random_year_trivia.dart';
