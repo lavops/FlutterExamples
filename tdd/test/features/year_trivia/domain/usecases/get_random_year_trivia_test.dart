@@ -14,7 +14,7 @@ void main() {
 
   setUp(() {
     repository = MockYearTriviaRepository();
-    usecase = GetRandomYearTrivia(repository: repository);
+    usecase = GetRandomYearTrivia(repository);
   });
 
   final tYearTrivia = YearTrivia(text: 'text', year: 1997);

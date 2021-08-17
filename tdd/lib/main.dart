@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tdd/features/number_trivia/presentation/pages/number_trivia_page.dart';
+import 'package:tdd/features/year_trivia/presentation/pages/year_trivia_page.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: NumberTriviaPage(),
+      home: YearTriviaPage(),
     );
   }
 }
