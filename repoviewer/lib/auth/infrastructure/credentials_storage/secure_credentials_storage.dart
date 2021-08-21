@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:oauth2/src/credentials.dart';
+import 'package:oauth2/oauth2.dart';
 import 'package:repoviewer/auth/infrastructure/credentials_storage/credentials_storage.dart';
 
 class SecureCredentialsStorage implements CredentialsStorage {
