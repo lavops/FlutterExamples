@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:repoviewer/core/presentation/routes/app_router.gr.dart';
 
 class AppWidget extends StatelessWidget {
+  final appRouter = AppRouter();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Repo Viewer',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Repo Viewer'),
-        ),
-        body: Center(
-          child: Container(
-            child: const Text('Repo Viewer'),
-          ),
-        ),
-      ),
+      routeInformationParser: appRouter.defaultRouteParser(),
+      routerDelegate: appRouter.delegate(),
     );
   }
 }
