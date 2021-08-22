@@ -6,22 +6,22 @@ import 'package:repoviewer/auth/infrastructure/credentials_storage/credentials_s
 import 'package:repoviewer/auth/infrastructure/credentials_storage/secure_credentials_storage.dart';
 import 'package:repoviewer/auth/infrastructure/github_authenticator.dart';
 
-final FlutterSecureStorageProvider =
+final flutterSecureStorageProvider =
     Provider((ref) => const FlutterSecureStorage());
 
 final dioForAuthProvider = Provider((ref) => Dio());
 
 final credentialsStorageProvider = Provider<CredentialsStorage>(
-  (ref) => SecureCredentialsStorage(ref.watch(FlutterSecureStorageProvider)),
+  (ref) => SecureCredentialsStorage(ref.watch(flutterSecureStorageProvider)),
 );
 
-final GithubAuthenticatorProvider = Provider(
+final githubAuthenticatorProvider = Provider(
   (ref) => GithubAuthenticator(
     ref.watch(credentialsStorageProvider),
     ref.watch(dioForAuthProvider),
   ),
 );
 
-final AuthNotifierProvider = StateNotifierProvider<AuthNotifier, AuthSate>(
-  (ref) => AuthNotifier(ref.watch(GithubAuthenticatorProvider)),
+final authNotifierProvider = StateNotifierProvider<AuthNotifier, AuthSate>(
+  (ref) => AuthNotifier(ref.watch(githubAuthenticatorProvider)),
 );
