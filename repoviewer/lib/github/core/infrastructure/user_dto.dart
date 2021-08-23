@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:repoviewer/github/core/domain/user.dart';
 
 part 'user_dto.freezed.dart';
 part 'user_dto.g.dart';
@@ -13,4 +14,18 @@ class UserDTO with _$UserDTO {
 
   factory UserDTO.fromJson(Map<String, dynamic> json) =>
       _$UserDTOFromJson(json);
+
+  factory UserDTO.fromDomain(User _) {
+    return UserDTO(
+      name: _.name,
+      avatarUrl: _.avatarUrl,
+    );
+  }
+
+  User toDomain() {
+    return User(
+      name: name,
+      avatarUrl: avatarUrl,
+    );
+  }
 }
