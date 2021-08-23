@@ -1,4 +1,4 @@
-# Flutter projects
+# Collection of Flutter Examples
 Repository full of all kinds of flutter projects
 
 ## Projects
