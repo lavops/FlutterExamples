@@ -4,8 +4,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:repoviewer/auth/application/auth_notifier.dart';
 import 'package:repoviewer/auth/shared/providers.dart';
 import 'package:repoviewer/core/presentation/routes/app_router.gr.dart';
+import 'package:repoviewer/core/shared/providers.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
+  await ref.read(sembastProvider).init(); // Init database
   final authNotifier = ref.read(authNotifierProvider.notifier);
   await authNotifier.checkAndUpdateAuthStatus();
   return unit;
