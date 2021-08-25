@@ -1,0 +1,36 @@
+@baseUrl = https://api.github.com
+@token = GIT_TOKEN
+@acceptHeader = application/vnd.github.v3.html+json
+
+// SEE STARRED REPOS 
+GET {{baseUrl}}/user/starred
+    ?page=1
+Authorization: bearer {{token}}
+###
+// SEARCH REPOS
+GET {{baseUrl}}/search/repositories
+    ?q=flutter
+    ?page=1
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
+###
+// GET README
+GET {{baseUrl}}/repos/flutter/flutter/readme
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
+###
+// STAR REPO
+PUT {{baseUrl}}/user/starred/lavops/Flutter
+Authorization: bearer {{token}}
+Content-Length: 0
+Accept: {{acceptHeader}}
+###
+// DELETE STAR
+DELETE {{baseUrl}}/user/starred/lavops/Flutter
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
+###
+// CHECK IF IS STARRED
+GET {{baseUrl}}/user/starred/lavops/Flutter
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
