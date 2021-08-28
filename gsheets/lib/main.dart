@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gsheets/gsheets.dart';
-import 'package:gsheets_example/gsheets_credentials.secret.dart';
+import 'package:gsheets_example/gsheets_api.dart';
+import 'package:gsheets_example/homepage.dart';
 
-void main() async {
-  final gsheets = GSheets(credentials);
-  final ss = await gsheets.spreadsheet(spreadsheetID);
-  var sheet = ss.worksheetByTitle('Proba');
-  await sheet!.values.insertValue('Proba', column: 1, row: 1);
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  GSheetsApi().init();
+
   runApp(MyApp());
 }
 
@@ -19,16 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: HomePage(),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
   }
 }
