@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:gsheets_example/button.dart';
+import 'package:gsheets_example/gsheets_api.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -10,6 +13,36 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController _controller = TextEditingController();
+
+  void _save() async {
+    await GSheetsApi.insert(_controller.text);
+
+    setState(() {
+      _controller.clear();
+    });
+  }
+
+  void startLoading() {
+    Timer.periodic(Duration(seconds: 1), (t) {
+      if (GSheetsApi.loading == false) {
+        setState(() {});
+
+        t.cancel();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() => setState(() {}));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                   controller: _controller,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Post a little message',
+                    hintText: 'Take a note',
                     suffixIcon: IconButton(
                       icon: Icon(Icons.clear),
                       onPressed: () {
@@ -70,7 +103,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Button(
                 text: 'P O S T',
-                function: () {},
+                function: _save,
               )
             ],
           ),
