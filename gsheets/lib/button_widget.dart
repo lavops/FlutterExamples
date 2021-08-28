@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatelessWidget {
+class ButtonWidget extends StatelessWidget {
   final String text;
   final function;
-  const Button({
+  const ButtonWidget({
     Key? key,
     required this.text,
     required this.function,

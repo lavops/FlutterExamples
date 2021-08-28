@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gsheets_example/button.dart';
+import 'package:gsheets_example/button_widget.dart';
 import 'package:gsheets_example/gsheets_api.dart';
+import 'package:gsheets_example/loading_widget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -54,6 +55,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   AppBar buildAppBar() {
+    if (GSheetsApi.loading == true) {
+      startLoading();
+    }
+
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -73,7 +78,7 @@ class _HomePageState extends State<HomePage> {
       children: [
         Expanded(
           child: Container(
-            child: SizedBox(),
+            child: GSheetsApi.loading ? LoadingWidget() : Container(),
           ),
         ),
         SizedBox(
@@ -101,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              Button(
+              ButtonWidget(
                 text: 'P O S T',
                 function: _save,
               )
