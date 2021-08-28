@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gsheets_example/gsheets_api.dart';
+import 'package:gsheets_example/services/gsheets_api.dart';
 
 import 'note_widget.dart';
 

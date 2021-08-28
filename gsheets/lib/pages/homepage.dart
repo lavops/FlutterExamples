@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gsheets_example/button_widget.dart';
-import 'package:gsheets_example/gsheets_api.dart';
-import 'package:gsheets_example/loading_widget.dart';
-import 'package:gsheets_example/notes_list_widget.dart';
+import 'package:gsheets_example/services/gsheets_api.dart';
+import 'package:gsheets_example/widgets/button_widget.dart';
+import 'package:gsheets_example/widgets/loading_widget.dart';
+import 'package:gsheets_example/widgets/notes_list_widget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
