@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gsheets_example/button_widget.dart';
 import 'package:gsheets_example/gsheets_api.dart';
 import 'package:gsheets_example/loading_widget.dart';
+import 'package:gsheets_example/notes_list_widget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> {
       children: [
         Expanded(
           child: Container(
-            child: GSheetsApi.loading ? LoadingWidget() : Container(),
+            child: GSheetsApi.loading ? LoadingWidget() : NotesListWidget(),
           ),
         ),
         SizedBox(
