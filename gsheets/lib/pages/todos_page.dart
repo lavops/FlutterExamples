@@ -5,15 +5,16 @@ import 'package:gsheets_example/services/gsheets_api.dart';
 import 'package:gsheets_example/widgets/button_widget.dart';
 import 'package:gsheets_example/widgets/loading_widget.dart';
 import 'package:gsheets_example/widgets/todos_list_widget.dart';
+import 'package:flutter/services.dart';
 
-class TodoPage extends StatefulWidget {
-  TodoPage({Key? key}) : super(key: key);
+class TodosPage extends StatefulWidget {
+  TodosPage({Key? key}) : super(key: key);
 
   @override
-  _TodoPageState createState() => _TodoPageState();
+  _TodosPageState createState() => _TodosPageState();
 }
 
-class _TodoPageState extends State<TodoPage> {
+class _TodosPageState extends State<TodosPage> {
   final TextEditingController _controller = TextEditingController();
 
   void _save() async {
@@ -22,6 +23,8 @@ class _TodoPageState extends State<TodoPage> {
     setState(() {
       _controller.clear();
     });
+
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
   }
 
   void startLoading() {

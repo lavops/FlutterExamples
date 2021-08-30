@@ -5,28 +5,31 @@ import 'package:gsheets_example/services/gsheets_api.dart';
 import 'package:gsheets_example/widgets/button_widget.dart';
 import 'package:gsheets_example/widgets/loading_widget.dart';
 import 'package:gsheets_example/widgets/notes_list_widget.dart';
+import 'package:flutter/services.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+class NotesPage extends StatefulWidget {
+  NotesPage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _NotesPageState createState() => _NotesPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NotesPageState extends State<NotesPage> {
   final TextEditingController _controller = TextEditingController();
 
   void _save() async {
-    await GSheetsApi.insert(_controller.text);
+    await GSheetsApi.insertNote(_controller.text);
 
     setState(() {
       _controller.clear();
     });
+
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
   }
 
   void startLoading() {
     Timer.periodic(Duration(seconds: 1), (t) {
-      if (GSheetsApi.loading == false) {
+      if (GSheetsApi.loadingNotes == false) {
         setState(() {});
 
         t.cancel();
@@ -56,7 +59,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   AppBar buildAppBar() {
-    if (GSheetsApi.loading == true) {
+    if (GSheetsApi.loadingNotes == true) {
       startLoading();
     }
 
@@ -79,7 +82,8 @@ class _HomePageState extends State<HomePage> {
       children: [
         Expanded(
           child: Container(
-            child: GSheetsApi.loading ? LoadingWidget() : NotesListWidget(),
+            child:
+                GSheetsApi.loadingNotes ? LoadingWidget() : NotesListWidget(),
           ),
         ),
         SizedBox(
