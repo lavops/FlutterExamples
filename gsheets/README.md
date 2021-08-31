@@ -1,16 +1,15 @@
-# gsheets
+# Google sheets examples
 
-A new Flutter project.
+Collections of examples with using google sheets as storage 
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Tutorial:
+- On `Google Cloud Platform` create new project. 
+- Then search bar look for `Google Sheets API` and enable it. 
+- After that go back on `Credentials` for your project.
+- Click `CREATE CREDENTIALS` and then `Service account`
+- Enter your details
+- Now in `Service Accounts` you have a new entry. Click `Edit Service account`
+- After click on `KEYS` tab, then `ADD KEY` and select `JSON` and click `Create`
+- Now file is dowloaded
+- After that create `gsheets_credentials.secret.dart` in `lib/services` following example from `lib/services/gsheets_credentials.secret.example.dart`
+- You're set to go
