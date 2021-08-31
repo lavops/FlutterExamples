@@ -29,6 +29,7 @@ class GSheetsApi {
     // Count number of notes
     countRowsNotes();
     countRowsTodos();
+    countRowsExpenses();
   }
 
   // NOTES FUNCTIONS
@@ -144,7 +145,8 @@ class GSheetsApi {
     loadingExpenses = false;
   }
 
-  static Future insert(String name, String amount, bool _isIncome) async {
+  static Future insertTransaction(
+      String name, String amount, bool _isIncome) async {
     if (_worksheetExpenses == null) return;
 
     numberOfExpenses++;

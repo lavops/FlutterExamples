@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gsheets_example/pages/expenses_page.dart';
 import 'package:gsheets_example/pages/notes_page.dart';
 import 'package:gsheets_example/pages/todos_page.dart';
 
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   List<StatefulWidget> _pages = [
     NotesPage(),
     TodosPage(),
-    TodosPage(),
+    ExpensesPage(),
   ];
 
   List<BottomNavigationBarItem> _items = [

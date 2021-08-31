@@ -44,6 +44,113 @@ class _ExpensesPageState extends State<ExpensesPage> {
     });
   }
 
+  void _newTransaction() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, setState) {
+            return AlertDialog(
+              title: Text('N E W  T R A N S A C T I O N'),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text('Expense'),
+                        Switch(
+                          value: _isIncome,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _isIncome = newValue;
+                            });
+                          },
+                        ),
+                        Text('Income'),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Form(
+                            key: _formKey,
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Amount?',
+                              ),
+                              validator: (text) {
+                                if (text == null || text.isEmpty) {
+                                  return 'Enter an amount';
+                                }
+                                return null;
+                              },
+                              controller: _controllerAmount,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'For what?',
+                            ),
+                            controller: _controllerName,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              actions: [
+                MaterialButton(
+                  color: Colors.grey[600],
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                MaterialButton(
+                  color: Colors.grey[600],
+                  child: Text(
+                    'Insert',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _insertTransaction();
+                      Navigator.of(context).pop();
+                    }
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   void dispose() {
     _controllerAmount.dispose();
