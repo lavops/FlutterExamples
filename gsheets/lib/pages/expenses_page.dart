@@ -2,13 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:gsheets_example/services/gsheets_api.dart';
-import 'package:gsheets_example/widgets/button_widget.dart';
 import 'package:gsheets_example/widgets/expenses_stats_widget.dart';
 import 'package:gsheets_example/widgets/loading_widget.dart';
-import 'package:gsheets_example/widgets/notes_list_widget.dart';
 import 'package:flutter/services.dart';
 import 'package:gsheets_example/widgets/plus_button_widget.dart';
-import 'package:gsheets_example/widgets/transaction_widget.dart';
 import 'package:gsheets_example/widgets/transactions_list_widget.dart';
 
 class ExpensesPage extends StatefulWidget {

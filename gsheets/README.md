@@ -12,4 +12,7 @@ Tutorial:
 - After click on `KEYS` tab, then `ADD KEY` and select `JSON` and click `Create`
 - Now file is dowloaded
 - After that create `gsheets_credentials.secret.dart` in `lib/services` following example from `lib/services/gsheets_credentials.secret.example.dart`
+- Make new google sheets and share it with email from `Google Cloud Platform`
 - You're set to go
+
+![gsheets](./assets/gsheets_app.png)
