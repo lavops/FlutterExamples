@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_demo/pages/new_note_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -19,7 +20,14 @@ class _HomePageState extends State<HomePage> {
   buildFloatingActionButton() {
     return FloatingActionButton(
       child: Icon(Icons.add),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => NewNotePage(),
+          ),
+        );
+      },
     );
   }
 
