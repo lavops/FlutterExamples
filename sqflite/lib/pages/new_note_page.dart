@@ -87,6 +87,11 @@ class _NewNotePageState extends State<NewNotePage> {
                           style: TextStyle(
                             fontSize: 18,
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              _title = value.toString();
+                            });
+                          },
                           decoration: InputDecoration(
                             labelText: 'Title',
                             labelStyle: TextStyle(
@@ -154,7 +159,26 @@ class _NewNotePageState extends State<NewNotePage> {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 20),
+                        height: 60,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: ElevatedButton(
+                          child: Text(
+                            "Add Note",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ],
                   ),
                 ),
