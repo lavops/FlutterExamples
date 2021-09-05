@@ -37,10 +37,12 @@ class _NewNotePageState extends State<NewNotePage> {
     }
   }
 
+  _submit() {}
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        onTap: () {},
+        onTap: () => FocusScope.of(context).unfocus(),
         child: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 40, vertical: 80),
@@ -83,15 +85,9 @@ class _NewNotePageState extends State<NewNotePage> {
                           vertical: 20,
                         ),
                         child: TextFormField(
-                          controller: _titleController,
                           style: TextStyle(
                             fontSize: 18,
                           ),
-                          onChanged: (value) {
-                            setState(() {
-                              _title = value.toString();
-                            });
-                          },
                           decoration: InputDecoration(
                             labelText: 'Title',
                             labelStyle: TextStyle(
@@ -101,6 +97,11 @@ class _NewNotePageState extends State<NewNotePage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
+                          validator: (input) => input!.trim().isEmpty
+                              ? 'Please enter a note title'
+                              : null,
+                          onSaved: (input) => _title = input!,
+                          initialValue: _title,
                         ),
                       ),
                       Padding(
@@ -130,6 +131,10 @@ class _NewNotePageState extends State<NewNotePage> {
                           vertical: 20,
                         ),
                         child: DropdownButtonFormField(
+                          isDense: true,
+                          icon: Icon(Icons.arrow_drop_down_circle),
+                          iconSize: 22,
+                          iconEnabledColor: Theme.of(context).primaryColor,
                           value: _priority,
                           onChanged: (value) {
                             setState(() {
@@ -158,6 +163,9 @@ class _NewNotePageState extends State<NewNotePage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
+                          validator: (input) => _priority == null
+                              ? 'Please select a priority level'
+                              : null,
                         ),
                       ),
                       Container(

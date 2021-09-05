@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   DatabaseHelper _databaseHelper = DatabaseHelper.instance;
 
   _updateNoteList() {
-    _noteList = DatabaseHelper.instance.getNoteList();
+    _noteList = _databaseHelper.getNoteList();
   }
 
   @override
@@ -52,6 +52,9 @@ class _HomePageState extends State<HomePage> {
     return FutureBuilder(
       future: _noteList,
       builder: (context, AsyncSnapshot snapshot) {
+        print(snapshot.hasData);
+        print(snapshot.data);
+
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(),
