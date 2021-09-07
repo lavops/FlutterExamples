@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:sqflite_demo/database/database.dart';
+import 'package:sqflite_demo/models/note_model.dart';
 import 'package:sqflite_demo/pages/home_page.dart';
 
 class NewNotePage extends StatefulWidget {
-  NewNotePage({Key? key}) : super(key: key);
+  final Note? note;
+  final Function? updateNoteList;
+
+  NewNotePage({Key? key, this.note, this.updateNoteList}) : super(key: key);
 
   @override
   _NewNotePageState createState() => _NewNotePageState();
@@ -11,12 +16,14 @@ class NewNotePage extends StatefulWidget {
 
 class _NewNotePageState extends State<NewNotePage> {
   final _formKey = GlobalKey<FormState>();
+  String btnText = 'Add Note';
+  String titleText = 'Add Note';
+
   String _title = '';
   DateTime _date = DateTime.now();
   String _priority = 'Low';
 
   TextEditingController _dateController = TextEditingController();
-  TextEditingController _titleController = TextEditingController();
 
   final DateFormat _dateFormatter = DateFormat('MMM dd. yyyy');
   final List<String> _priorities = ['Low', 'Medium', 'High'];
@@ -37,7 +44,68 @@ class _NewNotePageState extends State<NewNotePage> {
     }
   }
 
-  _submit() {}
+  _submit() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      print('$_title, $_date, $_priority');
+
+      Note note = Note(title: _title, date: _date, priority: _priority);
+
+      if (widget.note == null) {
+        note.status = 0;
+        DatabaseHelper.instance.insertNote(note);
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => HomePage(),
+          ),
+        );
+      } else {
+        note.id = widget.note!.id;
+        note.status = widget.note!.status;
+        DatabaseHelper.instance.updateNote(note);
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => HomePage(),
+          ),
+        );
+      }
+
+      widget.updateNoteList!();
+    }
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.note != null) {
+      _title = widget.note!.title!;
+      _date = widget.note!.date!;
+      _priority = widget.note!.priority!;
+
+      setState(() {
+        btnText = "Update Note";
+        titleText = "Update Note";
+      });
+    } else {
+      setState(() {
+        btnText = "Add Note";
+        titleText = "Add Note";
+      });
+    }
+
+    _dateController.text = _dateFormatter.format(_date);
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +134,7 @@ class _NewNotePageState extends State<NewNotePage> {
                   height: 20,
                 ),
                 Text(
-                  'Title',
+                  titleText,
                   style: TextStyle(
                     color: Colors.deepPurple,
                     fontSize: 40,
@@ -178,13 +246,13 @@ class _NewNotePageState extends State<NewNotePage> {
                         ),
                         child: ElevatedButton(
                           child: Text(
-                            "Add Note",
+                            btnText,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: _submit,
                         ),
                       ),
                     ],

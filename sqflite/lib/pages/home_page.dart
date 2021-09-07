@@ -41,7 +41,9 @@ class _HomePageState extends State<HomePage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => NewNotePage(),
+            builder: (_) => NewNotePage(
+              updateNoteList: _updateNoteList,
+            ),
           ),
         );
       },
@@ -151,7 +153,10 @@ class _HomePageState extends State<HomePage> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => NewNotePage(),
+                builder: (_) => NewNotePage(
+                  note: note,
+                  updateNoteList: _updateNoteList,
+                ),
               ),
             ),
           ),

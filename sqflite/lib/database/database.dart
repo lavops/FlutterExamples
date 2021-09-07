@@ -41,7 +41,7 @@ class DatabaseHelper {
 
   void _createDb(Database db, int version) async {
     await db.execute(
-      'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, $colDate DATETIME, $colPriority TEXT, $colStatus INTEGER',
+      'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, $colDate DATETIME, $colPriority TEXT, $colStatus INTEGER)',
     );
   }
 
