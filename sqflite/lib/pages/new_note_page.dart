@@ -78,6 +78,17 @@ class _NewNotePageState extends State<NewNotePage> {
     }
   }
 
+  _delete() {
+    DatabaseHelper.instance.deleteNote(widget.note!);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => HomePage(),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     _dateController.dispose();
@@ -255,6 +266,27 @@ class _NewNotePageState extends State<NewNotePage> {
                           onPressed: _submit,
                         ),
                       ),
+                      widget.note != null
+                          ? Container(
+                              margin: EdgeInsets.symmetric(vertical: 20),
+                              height: 60,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: ElevatedButton(
+                                child: Text(
+                                  "Delete Note",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                onPressed: _delete,
+                              ),
+                            )
+                          : SizedBox.shrink()
                     ],
                   ),
                 ),

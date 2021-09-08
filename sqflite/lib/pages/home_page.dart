@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               note.title!,
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.white,
+                // color: Colors.white,
                 decoration: note.status == 0
                     ? TextDecoration.none
                     : TextDecoration.lineThrough,
